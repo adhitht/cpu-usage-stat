@@ -37,13 +37,12 @@ int *get_CPU_times(char *proc_path) {
   return result;
 }
 
-double get_CPU_usage(char *proc_path, double sleep_time = 1) {
+double get_CPU_usage(char *proc_path) {
   // idle_time, total_time
   int *result1 = get_CPU_times("/proc");
   int idle1 = result1[0], total1 = result1[1];
   
-  // convert sleep_time into microseconds 
-  usleep(sleep_time * 1000000);
+  usleep(1000000);
   
   int *result2 = get_CPU_times("/proc");
   int idle2 = result2[0], total2 = result2[1];
